@@ -28,8 +28,11 @@ body {
 .header {
     position: relative;
     height: 350px;
+    transition: height .3s ease-in;
 }
-
+.header.shrunk {
+    height: 50px;
+}
 .navbar {
     padding: 10px;
     height: 30px;
@@ -38,7 +41,6 @@ body {
     align-items: center;
     background-color: var(--black);
 }
-
 .navbar .logo {
     font-family: "EBGaramondLogo";
     color: var(--white);
@@ -50,6 +52,7 @@ body {
 }
 .navbar .menu {
     margin: 0;
+    position: relative;
 }
 
 .menu li {
@@ -57,8 +60,8 @@ body {
     list-style: none;
     display: inline-block;
     margin-left: 10px;
-    padding: 0;
-    color: var(--primary);
+    padding: 15px 5px;
+    color: var(--primary);  
 }
 
 .menu a {
@@ -75,16 +78,19 @@ a {
     text-align: center;
     top: 0;
     height: 300px;
+    transition: transform .3s ease-in;
 }
 
+.baniere.inactive_baniere {
+    transform: translateX(-100%);
+}
 .header_center {
     position: absolute;
     height: 100px;
     width: 300px;
     top: 0;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 4%;
     margin: auto;
 }
 .header_center .slogan{
@@ -92,13 +98,19 @@ a {
     font-family: "EBGaramondItalic";
     text-align: center;
     width: 300px;
+    margin-top: 46px;
+    opacity: 0;
+    transition: opacity .3s, transform .3s ease-out;
 }
+
 .btn {
     display: block;
     border: transparent;
     padding: 10px;
     text-align: center;
     border-radius: 10px;
+    transition: filter .3s;
+    cursor: pointer;
 }
 
 .contact_btn {
@@ -112,12 +124,24 @@ a {
 .contact_btn span {
     font-size: 16px;
     position: relative;
+    margin-left: 18px;
     bottom: 6px;
+    font-weight: 550;
+    transition: margin-left .3s ease-in;
 }
 .contact_btn svg {
     width: 16px;
-    margin-left: 18px;
     fill: var(--black);
+    opacity: 0;
+    transform: translateX(-18px);
+    transition: opacity .3s, transform .3s ease-in;
+}
+.btn.contact_btn:hover span {
+    margin-left: 0;
+}
+.btn.contact_btn:hover svg {
+    opacity: 1;
+    transform: translateX(10px);
 }
 
 .entreprise_description {
@@ -128,11 +152,25 @@ a {
 
 .entreprise_description .boutique_img {
     width: 30%;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity .5s ease-in, transform .5s ease-in;
     display: inline-block;
 }
 .entreprise_description .name {
     font-weight: bold;
+    letter-spacing: 2px;
     margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .7s ease-out, transform .7s ease-out;
+}
+.entreprise_description .description {
+    opacity: 0;
+    letter-spacing: 2px;
+    font-weight: 200;
+    transform: translateY(20px);
+    transition: opacity .7s ease-out, transform 1s ease-out;
 }
 .entreprise_description .text {
     color: var(--white);
@@ -147,11 +185,20 @@ a {
     background-color: var(--primary);
     color: var(--black);
 }
+.btn.primary_btn:hover {
+    filter: saturate(1.5);
+}
 .secondary_btn {
     background-color: var(--blue);
 }
+.btn:hover {
+    filter: contrast(1.2);
+}
 .entreprise_description .primary_btn {
     margin-top: 30px;
+    opacity: 0;
+    transform: scale(.5);
+    transition: opacity 1.2s ease-in, transform .5s ease-out;
 }
 
 .new_products {
@@ -167,6 +214,20 @@ a {
     display: inline-block;
 }
 
+.product_one, .product_two {
+    opacity: 0;
+    transition: opacity .3s ease-in, transform .3s ease-in;
+}
+.product_one {
+    transform: translateX(-40px);
+}
+.product_two {
+    transform: translateX(40px);
+}
+.product_one.visible, .product_two.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
 .new_products .description {
     display: inline-block;
     width: 40%;
@@ -174,6 +235,8 @@ a {
 }
 .new_products .commentaires {
     font-family: "EBGaramondItalic";
+    transform: translateY(20px);
+    transition: transform .8s ease-out;
 }
 .new_products .description .name {
     font-weight: bold;
@@ -181,6 +244,8 @@ a {
 }
 .new_products .name {
     margin-top: 0;
+    transform: translateY(20px);
+    transition: transform .6s ease-out;
 }
 .product_one {
     position: relative;
@@ -203,14 +268,22 @@ a {
     right: 290px;
     text-align: right;
 }
-
+.product_one.visible .name, 
+.product_one.visible .commentaires, 
+.product_two.visible .name,
+.product_two.visible .commentaires {
+    transform: translateY(0);
+}
 .services {
     padding: 50px;
     background-color: var(--secondary);
 }
+
 .services .elements{
     display: flex;
     justify-content: start;
+    opacity: 0;
+    transition: opacity .3s ease-in;
 }
 .services .service img{
     width: 100%;
@@ -224,9 +297,12 @@ a {
     height: 487px;
     border-radius: 10px;
     background-color: var(--white);
+    transform: translateY(20px);
+    transition: transform .3s ease-in;
 }
 .service:nth-child(2){
     margin-left: 50px;
+    transition: transform .5s ease-in;
 }
 .service .description {
     width: 270px;
@@ -241,6 +317,12 @@ a {
     width: 250px;
     background-color: var(--black);
     color: var(--primary);
+}
+.services .elements.visible {
+    opacity: 1;
+}
+.elements.visible .service {
+    transform: translateY(0);
 }
 
 footer {
@@ -258,9 +340,11 @@ footer .title {
     font-weight: 200;
     color: var(--white);
 }
-footer .plus svg {
+.fb svg, .ig svg, .linkedin svg, .gmail svg {
     width: 20px;
     fill: var(--white);
+}
+footer .plus svg {
     margin-right: 10px;
 }
 footer a {
@@ -289,6 +373,58 @@ footer a {
     padding: 10px;
     text-align: center;
     background-color: var(--blue);
+}
+
+
+/* ANIMATION POUR L'OBSERVER */
+
+.slogan.visible {
+    opacity: 1;
+    transform: translateY(-20px);
+}
+.boutique_img.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+.entreprise_description .name.visible, .entreprise_description .description.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.entreprise_description .primary_btn.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.page.contact {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    margin-top: 20px;
+    margin-bottom: 22px;
+}
+.contact .social_networks {
+    width: 55%;
+}
+.contact .social_networks svg {
+    fill: var(--blue);
+}
+.contact .social_networks a {
+    color: var(--primary);
+    margin-left: 10px;
+}
+.contact .gmail a, .plus .gmail a {
+    margin-left: 30px;
+    line-height: 2;
+}
+.contact .newsletter {
+    width: 40%;
+}
+
+.footer.reglementations .Contact {
+    width: 200px;
+}
+.footer.reglementations .Contact a{
+    display: inline-block;
 }
 .prestations {
     padding: 10px;

@@ -26,7 +26,7 @@ const Header = ({baniereState, activePageClassname}: {
     })
     
 
-    const shrunkClassName: string = baniereState === false ? "shrunk" : ""
+    const shrunkClassName: string = activeBaniere === false ? "shrunk" : ""
 
     return <div className={"header " + shrunkClassName}>
         <Navbar />
@@ -36,7 +36,6 @@ const Header = ({baniereState, activePageClassname}: {
                 <p className="slogan">Etre belle est un devoir. L'accomplissement son devoir est signe de valeur.</p>
             </div>
         </div>}
-        
     </div>
 }
 

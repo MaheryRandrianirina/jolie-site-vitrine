@@ -39,11 +39,11 @@ export default function Home({classname}: {
     <Description/>
     <NewProducts>
       <Product className='product_one' imagesAttributes={{
-        src: "src/assets/images/compte-gouttes-pot-creme-verre-noir-sans-marque-ensemble-emballages-pour-produits-cosmetiques-concept-soins-peau-beaute-maquette-espace-copie_105596-4448.webp",
+        src: "src/assets/images/3.webp",
         alt: "produit"
       }} description={{name: "PRODUIT 1"}}/>
       <Product className='product_two' imagesAttributes={{
-        src: "src/assets/images/forfait-abonnement-boite-beaute-spa-soins-peau-produits-cosmetiques-maquillage-fond-rose-design-plat-concept-livraison-cadeaux-cosmetiques-naturels_360074-7398.jpg",
+        src: "src/assets/images/4.webp",
         alt: "produit"
       }} description={{name: "PRODUIT 2"}}/>
     </NewProducts>

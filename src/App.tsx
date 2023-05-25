@@ -57,6 +57,13 @@ function App() {
     const target = event.currentTarget
     const targetClassname: string = target.className
     
+    if(window.innerWidth <= 600){
+      const mobileMenu = document.querySelector('.menu.mobile')
+      if(mobileMenu?.classList.contains('active')){
+        mobileMenu.classList.remove('active')
+      }
+    }
+
     switch(targetClassname){
       case "home":
         setPage({
@@ -126,9 +133,14 @@ function App() {
         break
     }
   }
+
+  const handleClickBody: MouseEventHandler<HTMLDivElement> = (e:SyntheticEvent) => {
+    e.preventDefault()
+    document.querySelector('.menu.mobile')?.classList.remove('active')
+  }
   
   return (
-    <div className="App">
+    <div className="App" onClick={handleClickBody}>
       <OnClickContext.Provider value={{
         clickEventHandler: handleClickMenu,
         listElements: page.menuListElements

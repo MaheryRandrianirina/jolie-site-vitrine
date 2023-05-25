@@ -5,7 +5,7 @@ export default function Newsletter({title}: {
     title: string
 }): JSX.Element {
     return <div className="newsletter">
-    <p className="title">{title}</p>
+    <h4 className="title">{title}</h4>
     <form action="">
         <input type="text" placeholder="Nom et prénoms" />
         <textarea placeholder="Message"></textarea>

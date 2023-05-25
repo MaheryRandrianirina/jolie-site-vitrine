@@ -62,6 +62,12 @@ body {
     margin-left: 10px;
     padding: 15px 5px;
     color: var(--primary);  
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.menu.mobile li:hover {
+    color: var(--secondary);
 }
 
 .menu a {
@@ -176,7 +182,6 @@ a {
     color: var(--white);
     position: absolute;
     top: 50px;
-    height: 215.7px;
     width: 40%;
     margin-left: 20px;
     display: inline-block;
@@ -213,18 +218,31 @@ a {
     height: 400px;
     display: inline-block;
 }
-
-.product_one, .product_two {
+.page.supplies .products {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 48% 48%;
+    column-gap: 4%;
+    row-gap: 40px;
+}
+.page.supplies .product {
+    border: 1px solid var(--black);
+}
+.product_one, .product_two, 
+.product_three, .product_four,
+.product_five, .product_six {
     opacity: 0;
     transition: opacity .3s ease-in, transform .3s ease-in;
 }
-.product_one {
+.product_one,.product_three, .product_five {
     transform: translateX(-40px);
 }
-.product_two {
+.product_two, .product_four, .product_six {
     transform: translateX(40px);
 }
-.product_one.visible, .product_two.visible {
+.product_one.visible, .product_two.visible,
+.product_three.visible, .product_four.visible,
+.product_five.visible, .product_six.visible {
     opacity: 1;
     transform: translateX(0);
 }
@@ -238,7 +256,8 @@ a {
     transform: translateY(20px);
     transition: transform .8s ease-out;
 }
-.new_products .description .name {
+.new_products .description .name,
+.page.supplies .description .name {
     font-weight: bold;
     color: var(--blue);
 }
@@ -247,23 +266,24 @@ a {
     transform: translateY(20px);
     transition: transform .6s ease-out;
 }
-.product_one {
+.product_one, .product_three, .product_five {
     position: relative;
 }
-.product_one .description {
+.product_one .description, .product_three .description, .product_five .description {
     position: absolute;
     top: 0;
+    left: 290px;
 }
-.product_two {
+.product_two, .product_four, .product_six {
     position: relative;
     top: 30px;
     height: 400px;
 }
-.product_two img {
+.product_two img, .product_four img, .product_six img {
     position: absolute;
     right: 0;
 }
-.product_two .description {
+.product_two .description, .product_four .description, .product_six .description {
     position: absolute;
     right: 290px;
     text-align: right;
@@ -271,12 +291,46 @@ a {
 .product_one.visible .name, 
 .product_one.visible .commentaires, 
 .product_two.visible .name,
-.product_two.visible .commentaires {
+.product_two.visible .commentaires,
+.product_three.visible .name, 
+.product_three.visible .commentaires, 
+.product_four.visible .name,
+.product_four.visible .commentaires,
+.product_five.visible .name, 
+.product_five.visible .commentaires, 
+.product_six.visible .name,
+.product_six.visible .commentaires {
     transform: translateY(0);
 }
+
+.page.supplies .product_two, .page.supplies .product_four,
+.page.supplies .product_six {
+    top: 0;
+    height: unset;
+}
+.products .product_one .description,
+.products .product_three .description,
+.products .product_five .description {
+    padding-right: 10px;
+}
+.products .product_two .description,
+.products .product_four .description,
+.products .product_six .description {
+    padding-left: 10px;
+}
+.page.supplies .product img {
+    width: 270px;
+    height: 400px;
+    display: inline-block;
+}
+.page.supplies h3 {
+    margin-top: 40px;
+}
+
 .services {
     padding: 50px;
     background-color: var(--secondary);
+    overflow-x: hidden;
 }
 
 .services .elements{
@@ -352,7 +406,7 @@ footer a {
 }
 .newsletter input, .newsletter textarea {
     display: block;
-    border: transparent;
+    border: 1px solid var(--black);
     border-radius: 5px;
     padding: 10px;
     width: 150px;
@@ -398,12 +452,21 @@ footer a {
 .page.contact {
     display: flex;
     justify-content: space-between;
+    height: 300px;
     padding: 30px;
     margin-top: 20px;
     margin-bottom: 22px;
 }
 .contact .social_networks {
     width: 55%;
+}
+
+.contact .social_networks h4, .contact .social_networks h4 {
+    line-height: 25px;
+}
+
+.contact .social_networks div {
+    margin-top: 15px;
 }
 .contact .social_networks svg {
     fill: var(--blue);
@@ -416,6 +479,7 @@ footer a {
     margin-left: 30px;
     line-height: 2;
 }
+
 .contact .newsletter {
     width: 40%;
 }
@@ -425,6 +489,24 @@ footer a {
 }
 .footer.reglementations .Contact a{
     display: inline-block;
+}
+
+.footer.contact {
+    height: 180px;
+}
+
+.footer.contact .plus {
+    height: 160px;
+}
+
+.page.supplies {
+    padding: 30px;
+}
+.supplies .selling .selling_description {
+    width: 60%;
+    text-align: justify;
+    letter-spacing: 1.5px;
+    line-height: 2;
 }
 .prestations {
     padding: 10px;
@@ -454,4 +536,369 @@ footer a {
 }
 .prestation .name {
     width: 80%;
+}
+
+@media only screen and (max-width: 1000px){
+    .page.supplies .product img, .page.supplies .product .description {
+        display: block;
+        position: unset;
+    }
+
+    .page.supplies .product img {
+        width: 100%;
+    }
+
+    .page.supplies .product .description {
+        padding: 15px;
+    }
+}
+
+@media only screen and (max-width:967px){
+    .entreprise_description {
+        height: 220px;
+    }
+}
+@media only screen and (max-width:800px){
+
+    .entreprise_description {
+        height: 190px;
+    }
+
+    .entreprise_description .text {
+        width: 55%;
+        text-align: justify;
+    }
+
+    .page.supplies .selling .selling_description {
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 50px;
+    }
+
+    .page.supplies .selling {
+        display: table;
+    }
+
+    .page.supplies .selling h2, .page.supplies .selling h3 {
+        width: 80%;
+        margin: 15px auto;
+    }
+    .page.supplies .selling .products {
+        display: table-row;
+    }
+
+    .page.supplies .selling .products .product {
+        margin: 0 auto;
+        margin-top: 15px;
+        width: 80%;
+    }
+
+    .new_products {
+        height: 1360px;
+        text-align: center;
+    }
+    .new_products .product {
+        width: 250px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+    .new_products .product img {
+        width: 250px;
+    }
+    .new_products .product img, .new_products .product .description {
+        display: block;
+    }
+    .new_products .product .description {
+        position: static;
+        margin-top: 20px;
+        width: 90%;
+    }
+    .new_products .product_two img {
+        position: static;
+    }
+
+    .page.contact {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        padding-left: 30px;
+        height: 500px;
+    }
+
+    .page.contact .social_networks, .page.contact .newsletter {
+        width: 70%;
+    }
+
+    .page.contact .newsletter {
+        margin-top: 30px;
+    }
+}
+
+
+@media only screen and (min-width:617px) and (max-width:691px) {
+    
+    .entreprise_description {
+        height: 210px;
+    }
+}
+
+@media only screen and (min-width:600px) and (max-width:616px) {
+    
+    .entreprise_description {
+        height: 230px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .header_center .slogan {
+        color: var(--white);
+    }
+    .navbar .feather-menu {
+        color: #7F95D1;
+        cursor: pointer;
+    }
+
+    .navbar .menu.mobile {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 70%;
+        padding: 15px 0 0 10px;
+        background-color: var(--black);
+        z-index: 10;
+        transform: translateX(100%);
+        transition: transform .3s ease-in;
+    }
+
+    .navbar .menu.mobile .menu_header {
+        height: 20px;
+        width: 100%;
+        position: relative;
+        top: -15px;
+        left: -10px;
+        margin: 0;
+        background-color: var(--white);
+    }
+
+    .menu.mobile .menu_header .feather-x {
+        float: right;
+        margin-right: 10px;
+        color: var(--black);
+        cursor: pointer;
+        transition: color .3s;
+    }
+
+    .menu.mobile .menu_header .feather-x:hover {
+        color: var(--primary);
+    }
+
+    .navbar .menu.mobile li {
+        display: block;
+    }
+
+    .navbar .menu.mobile.active {
+        transform: translateX(0);
+        box-shadow: 0 0 0 var(--black), -1px 0 5px var(--black);
+    }
+    .entreprise_description {
+        height: auto;
+        padding-bottom: 10px;
+    }
+    .entreprise_description .boutique_img{
+        width: 95%;
+    }
+    .entreprise_description .text {
+        position: relative;
+        top: 15px;
+        width: 95%;
+        margin-left: 0;
+        display: none;
+        opacity: 0;
+        transition: opacity .5s;
+    }
+
+    .entreprise_description .text.visible_description {
+        display: block;
+        opacity: 1;
+    }
+
+    .entreprise_description .show_description {
+        color: #7F95D1;
+        text-align: center;
+        font-size: 14px;
+        font-style: italic;
+        cursor: pointer;
+        margin-bottom: 0;
+        transition: color .3s;
+    }
+
+    .entreprise_description .show_description:hover {
+        color: rgb(182, 182, 182);
+    }
+
+    .services {
+        padding: 20px;
+        position: relative;
+    }
+
+    .button_directions {
+        position: absolute;
+        top: 50%;
+        margin-top: -15px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .button_directions .left, .button_directions .right {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background: #2c2c2c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform .3s ease-in;
+    }
+
+    .button_directions .left:hover,.button_directions .right:hover {
+        transform: scale(1.1);
+    }
+
+    .button_directions .left {
+        margin-left: -10px;
+    }
+
+    .button_directions .right {
+        margin-right: 30px;
+    }
+
+    .left svg, .right svg {
+        color: #FFEBE7;
+        transform: scale(0.8);
+    }
+    .footer .plus {
+        flex-direction: column;
+        height: 630px;
+        padding-top: 0;
+        padding-left: 30px;
+        padding-right: 20px;
+    }
+}
+
+@media only screen and (max-width:507px){
+    .entreprise_description .show_description{
+        transform: translateY(20px);
+        margin-bottom: 30px;
+    }
+
+    .page.contact .social_networks, .page.contact .newsletter {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width:450px){
+    .navbar .menu.mobile {
+        width: 100%;
+    }
+
+    .entreprise_description  {
+        padding: 30px;
+        text-align: center;
+    }
+
+    .entreprise_description .boutique_img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .entreprise_description .text {
+        margin: 0 auto;
+    }
+
+    .entreprise_description .show_description {
+        margin-bottom: 10px;
+    }
+
+    .page.contact {
+        height: 570px;
+    }
+
+    .page.supplies .selling .products .product img {
+        height: 250px;
+    }
+}
+
+@media only screen and (max-width:400px){
+    .page.supplies .selling .products .product {
+        width: 95%;
+    }
+    .page.supplies .selling .products .product .description {
+        height: 150px;
+        overflow: scroll;
+    }
+}
+
+@media only screen and (max-width:356px){
+    .baniere .header_center {
+        width: 90%;
+    }
+
+    .baniere .header_center .slogan {
+        width: 100%;
+    }
+    .new_products {
+        padding: 0;
+    }
+    .new_products .product{
+        margin: 0 auto;
+    }
+
+    .page.contact {
+        padding-left: 30px;
+    }
+
+    .page.supplies .selling .product img {
+        height: 220px;
+    }
+}
+
+@media only screen and (max-width: 310px) and (min-width:290px){
+    .services .container {
+        width: 95%;
+    }
+
+    .services .container .service {
+        position: relative;
+        width: 250px;
+    }
+
+    .services .service .description {
+        width: 240px;
+    }
+
+    .service .secondary_btn {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 289px) {
+    .services .container {
+        width: 95%;
+    }
+
+    .services .container .service {
+        position: relative;
+        width: 240px;
+    }
+
+    .services .service .description {
+        width: 230px;
+    }
+
+    .service .secondary_btn {
+        width: 90%;
+    }
 }

@@ -18,6 +18,8 @@ export default function Home({classname}: {
   })
 
   useEffect(()=>{
+      document.title = "Accueil"
+      
       let targets: (Element | null)[] = [
         document.querySelector('.header'),
         document.querySelector('.entreprise_description'),

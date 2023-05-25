@@ -27,7 +27,7 @@ const Header = ({baniereState, activePageClassname}: {
     
 
     const shrunkClassName: string = activeBaniere === false ? "shrunk" : ""
-
+    
     return <div className={"header " + shrunkClassName}>
         <Navbar />
         {activeBaniere && <div className="baniere" >

@@ -1,7 +1,7 @@
 
 import './styles/main.css'
 import Header from './partials/header'
-import { Context, Dispatch, MouseEventHandler, ReactNode, SetStateAction, SyntheticEvent, createContext, useState } from 'react'
+import { Context, Dispatch, MouseEventHandler, SetStateAction, SyntheticEvent, createContext, useState } from 'react'
 import Home from './pages/Home'
 import Supplies from './pages/Supplies'
 import Contact from './pages/Contact'
@@ -21,7 +21,7 @@ type MenuListElements = {
 }
 
 export const OnClickContext: Context<{
-  clickEventHandler: MouseEventHandler<HTMLLIElement>,
+  clickEventHandler: MouseEventHandler<HTMLLIElement | HTMLButtonElement>,
   listElements: MenuListElements
 }> = createContext({
   clickEventHandler: (e)=> {
@@ -55,7 +55,7 @@ function App() {
   const handleClickMenu: MouseEventHandler<HTMLLIElement> = (event: SyntheticEvent) => {
     event.preventDefault()
     const target = event.currentTarget
-    const targetClassname: string = target.className
+    const targetClassname: string = target.id
     
     if(window.innerWidth <= 600){
       const mobileMenu = document.querySelector('.menu.mobile')
@@ -131,9 +131,19 @@ function App() {
           } 
         })
         break
+      case "contact_btn": 
+        setPage({
+          active: <Contact/>,
+          baniere: false,
+          menuListElements: {home: "Accueil", ...menuListElementsDefault, contact: ""},
+          footer: {
+            className: targetClassname,
+            toExclude: ["contact", "newsletter"]
+          }
+        })
+        break
     }
   }
-
   const handleClickBody: MouseEventHandler<HTMLDivElement> = (e:SyntheticEvent) => {
     e.preventDefault()
     document.querySelector('.menu.mobile')?.classList.remove('active')

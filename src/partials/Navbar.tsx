@@ -34,7 +34,7 @@ export default function Navbar():JSX.Element {
     const handleResponsive = useCallback(()=>{
         if(window.innerWidth <= 600){
             setMobile(m => {
-                return {ok: m.ok === false ? true: m.ok, className: m.className === "" ? "mobile" : m.className}
+                return {ok: true, className: m.className === "" ? "mobile" : m.className}
             })
         }else {
             setMobile(m => {
@@ -60,7 +60,8 @@ export default function Navbar():JSX.Element {
                 transition: "width .3s"
             }}></p>,
             width: targetRect.width
-        } )
+        })
+        
     }
 
     const handleMouseLeave: MouseEventHandler<HTMLUListElement> = useCallback((event: SyntheticEvent) => {
@@ -92,11 +93,11 @@ export default function Navbar():JSX.Element {
         for(const className in menuList){
             const i = className as keyof MenuListElements
             if(menuList[i] !== ""){
-                jsxArray.push(<li className={i} key={i} onMouseEnter={handleMenuHover} onClick={clickEventHandler}>{menuList[i]}</li>)
+                jsxArray.push(<li className={i} id={i} key={i} onMouseEnter={mobile.ok === false ? handleMenuHover : undefined} onClick={clickEventHandler}>{menuList[i]}</li>)
             }
         }
         return jsxArray
-    }, [listElements])
+    }, [listElements, mobile.ok])
 
     const handleCloseMobileMenu: MouseEventHandler<SVGElement> = (e: SyntheticEvent) => {
         setMobile(m => {
@@ -116,13 +117,13 @@ export default function Navbar():JSX.Element {
     </ul>
 
     return <nav className="navbar">
-    <div className="logo">JO<span className="logo_rose">LIE</span></div>
-    {menu}
-    {mobile.ok && <svg onClick={handleBarMenuClick} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-menu">
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-    }
-</nav>
+        <div className="logo">JO<span className="logo_rose">LIE</span></div>
+        {menu}
+        {mobile.ok && <svg onClick={handleBarMenuClick} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-menu">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        }
+    </nav>
 }

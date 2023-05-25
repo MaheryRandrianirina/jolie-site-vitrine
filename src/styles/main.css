@@ -34,6 +34,9 @@ body {
     height: 50px;
 }
 .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 6;
     padding: 10px;
     height: 30px;
     display: flex;
@@ -385,7 +388,7 @@ footer {
 footer .plus {
     display: flex;
     justify-content: space-around;
-    height: 240px;
+    height: 260px;
     padding-top: 20px;
     background-color:#2c2c2c;
     font-weight: 100;
@@ -398,11 +401,24 @@ footer .title {
     width: 20px;
     fill: var(--white);
 }
+
 footer .plus svg {
     margin-right: 10px;
 }
+
 footer a {
+    display: inline-block;
     color: var(--primary);
+    transition: transform .4s ease-out;
+}
+
+footer a:hover {
+    color: var(--blue);
+    transform: translateX(20px);
+}
+
+footer.blog .plus, footer.about .plus, footer.reglementations .plus {
+    height: 260px;
 }
 .newsletter input, .newsletter textarea {
     display: block;
@@ -461,6 +477,14 @@ footer a {
     width: 55%;
 }
 
+.contact .social_networks a {
+    display: inline-block;
+    transition:  color .3s, transform .3s;
+}
+.contact .social_networks a:hover {
+    color: var(--blue);
+    transform: translateX(20px);
+}
 .contact .social_networks h4, .contact .social_networks h4 {
     line-height: 25px;
 }
@@ -657,6 +681,11 @@ footer a {
     .navbar .feather-menu {
         color: #7F95D1;
         cursor: pointer;
+        transition: filter .3s;
+    }
+
+    .navbar .feather-menu:hover {
+        filter: brightness(0.8);
     }
 
     .navbar .menu.mobile {

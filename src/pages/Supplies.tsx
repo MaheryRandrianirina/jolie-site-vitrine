@@ -6,6 +6,8 @@ import createObserver from "../lib/intersectionObserver";
 export default function Supplies(): JSX.Element {
     
     useEffect(()=>{
+        document.title = "Offres"
+        
         try {
             createObserver(handleObservation, Array.from(document.querySelectorAll('.product')), {
                 root: document.querySelector('.page .supplies'),

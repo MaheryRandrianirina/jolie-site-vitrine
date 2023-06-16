@@ -1,14 +1,18 @@
 {
-  "name": "my-react-ts-app-with-vite",
+  "name": "jolie-site-vitrine",
+  "homepage": "http://MaheryRandrianirina.github.io/jolie-site-vitrine",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "predeploy": "tsc && vite build",
+    "deploy": "gh-pages -d build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.62.1"
